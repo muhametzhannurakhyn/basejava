@@ -4,15 +4,16 @@
 public class ArrayStorage {
     Resume[] storage = new Resume[100];
     int size = 0;
+
     void clear() {
         for (int i = 0; i < size; i++) {
             storage[i] = null;
         }
+        size = 0; // Сбрасываем размер
     }
 
     void save(Resume r) {
-        storage[size] = r;
-        size++;
+        storage[size++] = r;
     }
 
     Resume get(String uuid) {
@@ -43,11 +44,14 @@ public class ArrayStorage {
      */
     Resume[] getAll() {
         Resume[] result = new Resume[size];
-
-        return new Resume[0];
+        for (int i = 0; i < size; i++) {
+            result[i] = storage[i];
+        }
+        return result;
     }
 
+
     int size() {
-        return this.size;
+        return size;
     }
 }
