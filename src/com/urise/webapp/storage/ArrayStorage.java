@@ -8,26 +8,12 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-    public void save(Resume r) {
-        if(getIndex(r.getUuid()) != -1){
-            System.out.println("Такое уже есть");
-        }
-        else if(size == storage.length) {
-            System.out.println("хранилище переполнено");
-        }else{
-            storage[size++] = r;
-        }
+    protected void addElement(Resume r, int i) {
+        storage[size] = r;
     }
 
-
-    public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if(index == -1){
-            System.out.println("Резюме с таким uuid нету в хранилище.");
-        }else{storage[index] = storage[size - 1];
-        storage[size - 1] = null;
-        size--;
-        }
+    protected void deleteElement(int index){
+        storage[index] = storage[size - 1];
     }
 
 
@@ -39,6 +25,4 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
         return -1;
     }
-
-
 }
