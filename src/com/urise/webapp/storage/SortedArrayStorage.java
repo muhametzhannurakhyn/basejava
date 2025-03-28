@@ -12,13 +12,17 @@ public class SortedArrayStorage extends AbstractArrayStorage{
         storage[insertIndex] = r;
     }
 
+    // int numMoved = size - index - 1;
+    // if (numMoved > 0){
+    // System.arraycopy(storage, index + 1, storage, index, numMoved);
+    // }
+
     protected void deleteElement(int index){
         System.arraycopy(storage, index + 1, storage, index, size - index - 1);
     }
 
     protected int getIndex(String uuid) {
-        Resume searchKey = new Resume();
-        searchKey.setUuid(uuid);
+        Resume searchKey = new Resume(uuid);
         return Arrays.binarySearch(storage, 0, size, searchKey);
     }
 }
