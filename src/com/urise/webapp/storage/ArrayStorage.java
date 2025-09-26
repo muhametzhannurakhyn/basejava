@@ -8,18 +8,19 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-    protected void addElement(Resume r, int i) {
-        storage[size] = r;
-    }
-
-    protected void deleteElement(int index){
+    @Override
+    protected void fillDeletedElement(int index) {
         storage[index] = storage[size - 1];
     }
 
+    @Override
+    protected void insertElement(Resume r, int index) {
+        storage[size] = r;
+    }
 
-    protected int getIndex(String uuid) {
-        for (int i = 0; i < size; i++){
-            if(storage[i].getUuid().equals(uuid)){
+    protected Integer getSearchKey(String uuid) {
+        for (int i = 0; i < size; i++) {
+            if (uuid.equals(storage[i].getUuid())) {
                 return i;
             }
         }
